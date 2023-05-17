@@ -18,34 +18,31 @@ const phoneRegExp =
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().min(3).matches(nameRegExp, 'Enter valid name').required(),
-  number: Yup.string().matches(phoneRegExp, 'Enter valid number').required(),
+  phone: Yup.string().matches(phoneRegExp, 'Enter valid phone').required(),
 });
 
 const initialValues = {
   name: '',
-  number: '',
+  phone: '',
 };
 
-const ContactForm = ({ onSubmit }) => {
+const ContactForm = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(getContacts);
 
   const handleSubmit = (values, { resetForm }) => {
+    const { name, phone } = values;
     const isContactExist = contacts.some(
-      contact => contact.name.toLowerCase() === values.name.toLowerCase()
+      contact => contact.name.toLowerCase() === name.toLowerCase()
     );
 
     if (isContactExist) {
-      alert(`${values.name} is already in contacts`);
+      alert(`${name} is already in contacts`);
       resetForm();
       return;
     }
 
-    dispatch(
-      addContact({
-        ...values,
-      })
-    );
+    dispatch(addContact({ name: name, phone: phone }));
     resetForm();
   };
 
@@ -64,18 +61,18 @@ const ContactForm = ({ onSubmit }) => {
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
           />
-          <ErrorMess name="name" component="div" />
+          <ErrorMess name="name" component={ErrorMess} />
         </Label>
-        <Label htmlFor="number">
+        <Label htmlFor="phone">
           Number
           <Input
             type="tel"
-            name="number"
+            name="phone"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
           />
         </Label>
-        <ErrorMess name="number" component="div" />
+        <ErrorMess name="phone" component="div" />
         <BtnForm type="submit">Add contact</BtnForm>
       </FormBox>
     </Formik>
