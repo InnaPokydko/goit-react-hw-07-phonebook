@@ -1,7 +1,7 @@
-export const getTasks = state => state.tasks.items;
+export const getContacts = state => state.contacts.contactsArr;
 
-export const getIsLoading = state => state.tasks.isLoading;
+export const getIsLoading = state => state.contacts.isLoading;
 
-export const getError = state => state.tasks.error;
+export const getError = state => state.contacts.error;
 
-export const getStatusFilter = state => state.filters.status;
+export const getFilter = state => state.filter.status;

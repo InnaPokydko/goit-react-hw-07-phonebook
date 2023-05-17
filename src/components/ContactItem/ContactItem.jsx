@@ -3,13 +3,15 @@ import { ContactStyle, BtnDelete } from './ContactItem.styled';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 
 const ContactItem = ({ contact, onDelete }) => {
-  const { id, name, number } = contact;
+  const { id, name, phone } = contact;
 
   return (
     <ContactStyle>
-      {name}: {number}
+      {name}: {phone}
       <BtnDelete type="button" onClick={() => onDelete(id)}>
-        <RiDeleteBin6Line style={{ width: '16px', height: '16px', fill: 'white' }} />
+        <RiDeleteBin6Line
+          style={{ width: '16px', height: '16px', fill: 'white' }}
+        />
       </BtnDelete>
     </ContactStyle>
   );
@@ -21,7 +23,7 @@ ContactItem.propTypes = {
   contact: PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    number: PropTypes.string.isRequired,
+    phone: PropTypes.string.isRequired,
   }).isRequired,
   onDelete: PropTypes.func.isRequired,
 };

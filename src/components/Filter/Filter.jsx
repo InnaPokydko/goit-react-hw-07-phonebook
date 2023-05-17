@@ -2,11 +2,12 @@ import React from 'react';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setStatusFilter } from 'redux/filtersSlice';
+import { getFilter } from 'redux/selectors';
 import { Input } from './Filter.styled';
 
 const Filter = () => {
   const dispatch = useDispatch();
-  const filter = useSelector(state => state.filter.status?.value.toLowerCase());
+  const filter = useSelector(getFilter)?.value || '';
   const [inputValue, setInputValue] = useState(filter || '');
 
   const handleChange = event => {

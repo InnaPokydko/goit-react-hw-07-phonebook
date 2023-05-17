@@ -8,7 +8,7 @@ html {
 
 body {
   margin: 0;
-  padding: 10vh 30vw;
+  padding: 10vh 25vw;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Merriweather',
     sans-serif;
@@ -17,7 +17,7 @@ body {
 
   background-image: url( https://img.freepik.com/vecteurs-libre/fond-geometrique-degrade_23-2149337509.jpg);
   background-size: cover;
-  background-position: center center;
+  background-position: center ;
   background-repeat: no-repeat;
 }
 

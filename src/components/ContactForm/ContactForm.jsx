@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/contactListSlice';
-import { nanoid } from 'nanoid';
+import { addContact } from 'redux/operations';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import { getContacts } from 'redux/selectors';
 import {
   FormBox,
   Input,
@@ -28,7 +28,7 @@ const initialValues = {
 
 const ContactForm = ({ onSubmit }) => {
   const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts.contactsArr);
+  const contacts = useSelector(getContacts);
 
   const handleSubmit = (values, { resetForm }) => {
     const isContactExist = contacts.some(
@@ -44,7 +44,6 @@ const ContactForm = ({ onSubmit }) => {
     dispatch(
       addContact({
         ...values,
-        id: nanoid(),
       })
     );
     resetForm();
